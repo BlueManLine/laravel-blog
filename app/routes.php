@@ -1,9 +1,5 @@
 <?php
 
-/*
-Route::get('/', function()
-{
-	return View::make('hello');
-});
-*/
-Route::controller('/', 'HomeController');
+Route::controller('user', 'UserController');
+
+Route::controller('/', 'IndexController');
