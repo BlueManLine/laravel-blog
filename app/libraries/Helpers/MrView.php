@@ -10,7 +10,7 @@ class MrView
      * @param string    $sLink          a link in SomeController@getAction statement for specify RESTful actions or SomeController@*Action for all RESTful actions
      * @param string    $sMatchReturn   OPTIONAL: a text to return on success match
      *
-     * @usage Helpers\MrView::activeLaravelLink('UserController@getRegister')
+     * @uses  Helpers\MrView::activeLaravelLink('UserController@getRegister')
      *        Helpers\MrView::activeLaravelLink('UserController@*Register')
      *        Helpers\MrView::activeLaravelLink('UserController@getRegister', ' selected')
      *
