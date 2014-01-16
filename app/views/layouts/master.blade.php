@@ -38,7 +38,7 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <?php /*
-                <li{{ Helpers\MrView::activeLaravelLink('IndexController@getIndex',' class="active"') }}><a href="/">Home</a></li>
+                <li{{ Helpers\MrView::activeLaravelLink('IndexController@*Index',' class="active"') }}><a href="/">Home</a></li>
                 */ ?>
             </ul>
         </div><!-- /.nav-collapse -->
