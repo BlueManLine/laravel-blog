@@ -9,11 +9,13 @@
             <div class="form-group">
                 {{ Form::label('email', 'Email address') }}
                 {{ Form::email('email', null, array('class'=>'form-control','placeholder'=>'Enter email')) }}
+                {{ $errors->first('email') }}
             </div>
 
             <div class="form-group">
                 {{ Form::label('nick', 'Your nickname') }}
                 {{ Form::text('nick', null, array('class'=>'form-control','placeholder'=>'Enter nick')) }}
+                {{ $errors->first('nick') }}
             </div>
 
             {{ Form::submit('Register me', array('class'=>'btn btn-primary')) }}

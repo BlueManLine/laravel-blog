@@ -50,6 +50,10 @@
     <div class="row row-offcanvas row-offcanvas-right">
 
         <div class="col-xs-12 col-sm-9">
+            <!-- will be used to show any messages -->
+            @if (Session::has('message'))
+            <div class="alert alert-danger">{{ Session::get('message') }}</div>
+            @endif
             @yield('content')
         </div><!--/span-->
 
