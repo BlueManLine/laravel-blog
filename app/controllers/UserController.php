@@ -22,13 +22,38 @@ class UserController extends BaseController
         if ($validation->fails())
         {
             // Validation has failed.
-            Session::flash('message', 'WOW! Some errors happen!');
+            Session::flash('error', 'WOW! Some errors happen!');
             return Redirect::to('user/register')->withInput()->withErrors($validation);
         }
         else
         {
-            // redirect
-            Session::flash('message', 'Successfully created nerd!');
+            // store
+            $oUser = new User();
+            $oUser->email = Input::get('email');
+            $oUser->nick = Input::get('nick');
+            $oUser->ip_created = Request::getClientIp();
+            $bSaved = $oUser->save();
+
+            if( $bSaved )
+            {
+                // sending confirmation email
+                $data = array(
+                    'nick' => Input::get('nick')
+                );
+                Mail::send('emails.welcome', $data, function($message)
+                {
+                    $message->from('us@example.com', 'Laravel')
+                        ->to(Input::get('email'), 'Szymon Bluma')
+                        ->subject('Welcome!');
+                });
+
+                Session::flash('success', 'Successfully created nerd!');
+            }
+            else
+            {
+                Session::flash('error', 'Sorry, we cant save the record right now :/');
+            }
+
             return Redirect::to('user/register');
         }
     }

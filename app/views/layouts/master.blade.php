@@ -51,8 +51,11 @@
 
         <div class="col-xs-12 col-sm-9">
             <!-- will be used to show any messages -->
-            @if (Session::has('message'))
-            <div class="alert alert-danger">{{ Session::get('message') }}</div>
+            @if (Session::has('error'))
+            <div class="alert alert-danger">{{ Session::get('error') }}</div>
+            @endif
+            @if (Session::has('success'))
+            <div class="alert alert-success">{{ Session::get('success') }}</div>
             @endif
             @yield('content')
         </div><!--/span-->
