@@ -5,6 +5,12 @@ class UserController extends BaseController
 
     public function getRegister()
 	{
+        if (Auth::check())
+        {
+            Session::flash('success', 'You are still login :)');
+            return Redirect::to('user/account');
+        }
+
         return View::make('user.register');
 	}
 
@@ -12,6 +18,12 @@ class UserController extends BaseController
 
     public function postRegister()
     {
+        if (Auth::check())
+        {
+            Session::flash('success', 'You are still login :)');
+            return Redirect::to('user/account');
+        }
+
         $rules = array(
             'nick'      => array('required', 'unique:users,nick'),
             'email'     => array('required', 'email', 'unique:users,email'),
@@ -108,7 +120,47 @@ class UserController extends BaseController
 
     public function getLogin()
     {
+        if (Auth::check())
+        {
+            Session::flash('success', 'You are still login :)');
+            return Redirect::to('user/account');
+        }
+
         return View::make('user.login');
+    }
+
+    public function postLogin()
+    {
+        if (Auth::check())
+        {
+            Session::flash('success', 'You are still login :)');
+            return Redirect::to('user/account');
+        }
+
+        $rules = array(
+            'email'     => array('required', 'email'),
+            'password'  => array('required'),
+        );
+
+        $validation = Validator::make(Input::all(), $rules);
+
+        if ( !$validation->fails() )
+        {
+            if (Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password'))))
+            {
+                return Redirect::intended('user/account');
+            }
+        }
+
+        // Validation has failed.
+        Session::flash('error', 'Incorrect email or password');
+        return Redirect::to('user/login')->withInput()->withErrors($validation);
+    }
+
+
+    public function getAccount()
+    {
+
     }
 
 }
