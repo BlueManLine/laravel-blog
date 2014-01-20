@@ -40,13 +40,16 @@ class UserController extends BaseController
                 $data = array(
                     'nick' => Input::get('nick')
                 );
-                Mail::send('emails.welcome', $data, function($message)
-                {
-                    $message->from('us@example.com', 'Laravel')
-                        ->to(Input::get('email'), 'Szymon Bluma')
-                        ->subject('Welcome!');
-                });
-
+                try {
+                    Mail::send('emails.welcome', $data, function($message)
+                    {
+                        $message->to(Input::get('email'), 'Szymon Bluma')
+                            ->subject('Welcome!');
+                    });
+                } catch(Exception $e) {
+                    User::destroy($oUser->id);
+                    throw $e;
+                }
                 Session::flash('success', 'Successfully created nerd!');
             }
             else
