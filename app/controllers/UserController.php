@@ -46,7 +46,7 @@ class UserController extends BaseController
                 try {
                     Mail::send('emails.welcome', $data, function($message)
                     {
-                        $message->to(Input::get('email'), 'Szymon Bluma')
+                        $message->to(Input::get('email'), Input::get('nick'))
                             ->subject('Welcome!');
                     });
                 } catch(Exception $e) {
@@ -78,11 +78,25 @@ class UserController extends BaseController
 
         if( !empty($account) )
         {
+            $userPassword = str_random(8);
+
             $user = User::find($account[0]['id']);
             $user->status = User::status_active;
+            $user->password = Hash::make($userPassword);
             $user->hash = NULL;
             $user->save();
-            Session::flash('success', 'Account has been activated');
+
+            $data = array(
+                'nick' => $user->nick,
+                'password' => $userPassword,
+            );
+            Mail::send('emails.password', $data, function($message) use ($user)
+            {
+                $message->to($user->email, $user->nick)
+                    ->subject('Your new password');
+            });
+
+            Session::flash('success', 'Account has been activated and password hass been send to you');
             return Redirect::to('user/login');
         }
         else
