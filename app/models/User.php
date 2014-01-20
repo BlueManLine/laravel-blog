@@ -19,6 +19,30 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password');
 
+    /**
+     * Available statuses for user account
+     */
+    const status_inactive = 0;
+    const status_active = 1;
+    const status_banned = 2;
+
+    /**
+     * List of all statuses
+     *
+     * @var array
+     */
+    public static $aStatuses = array(self::status_inactive, self::status_active, self::status_banned);
+
+    /**
+     * Generate an hash used be hash field in User model
+     *
+     * @return string
+     */
+    public static function generateHash()
+    {
+        return hash('md5', time().time().str_random(60));
+    }
+
 	/**
 	 * Get the unique identifier for the user.
 	 *

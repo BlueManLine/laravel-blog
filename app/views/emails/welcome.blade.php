@@ -7,7 +7,7 @@
 		<h2>Hi, {{ $nick }}</h2>
 
 		<div>
-			To reset your password, complete this form
+			To activate your account please go to {{ url('user/activate/'.$hash) }}
 		</div>
 	</body>
 </html>

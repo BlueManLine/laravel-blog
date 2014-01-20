@@ -10,7 +10,7 @@ class UsersTableSeeder extends Seeder {
         $now = date('Y-m-d H:i:s');
 
 		$users = array(
-            array('email'=>'szymon.bluma@polcode.net','nick'=>'BlueMan','pass'=>Hash::make('qwe'),'ip_created'=>'localhost','created_at'=>$now,'updated_at'=>$now)
+            array('status'=>User::status_active,'email'=>'szymon.bluma@polcode.net','nick'=>'admin','pass'=>Hash::make('qwe'),'is_admin'=>1,'ip_created'=>'localhost','created_at'=>$now,'updated_at'=>$now)
 		);
 
 		// Uncomment the below to run the seeder

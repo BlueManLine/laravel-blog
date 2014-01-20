@@ -29,6 +29,8 @@ class UserController extends BaseController
         {
             // store
             $oUser = new User();
+            $oUser->status = User::status_inactive;
+            $oUser->hash = User::generateHash();
             $oUser->email = Input::get('email');
             $oUser->nick = Input::get('nick');
             $oUser->ip_created = Request::getClientIp();
@@ -38,7 +40,8 @@ class UserController extends BaseController
             {
                 // sending confirmation email
                 $data = array(
-                    'nick' => Input::get('nick')
+                    'nick' => $oUser->nick,
+                    'hash' => $oUser->hash,
                 );
                 try {
                     Mail::send('emails.welcome', $data, function($message)
@@ -57,6 +60,34 @@ class UserController extends BaseController
                 Session::flash('error', 'Sorry, we cant save the record right now :/');
             }
 
+            return Redirect::to('user/register');
+        }
+    }
+
+    public function getActivate($hash=null)
+    {
+        if( is_null($hash) )
+        {
+            Session::flash('error', 'Mismatch registration hash param');
+            return Redirect::to('user/register');
+        }
+
+        $account = User::where('hash','=', $hash)
+                    ->where('status', '=', User::status_inactive)
+                    ->take(1)->get();
+
+        if( !empty($account) )
+        {
+            $user = User::find($account[0]['id']);
+            $user->status = User::status_active;
+            $user->hash = NULL;
+            $user->save();
+            Session::flash('success', 'Account has been activated');
+            return Redirect::to('user/login');
+        }
+        else
+        {
+            Session::flash('error', 'The account doesnt exists');
             return Redirect::to('user/register');
         }
     }
