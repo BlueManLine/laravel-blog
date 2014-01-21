@@ -22,6 +22,11 @@
 
         {{ Form::close() }}
 
+        <br />
+        <p>
+            {{ link_to('user/remind','Remind a password') }}
+        </p>
+
     </div>
 </div>
 @stop
