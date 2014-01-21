@@ -3,14 +3,14 @@
 class UserController extends BaseController
 {
 
+    public function __construct()
+    {
+        //$this->beforeFilter('auth', array('only'=>array('getAccount')));
+        //$this->beforeFilter('guest', array('only'=>array('')));
+    }
+
     public function getRegister()
 	{
-        if (Auth::check())
-        {
-            Session::flash('success', 'You are still login :)');
-            return Redirect::to('user/account');
-        }
-
         return View::make('user.register');
 	}
 
@@ -244,7 +244,7 @@ class UserController extends BaseController
 
     public function getAccount()
     {
-
+        return View::make('user.account');
     }
 
     public function getLogout()

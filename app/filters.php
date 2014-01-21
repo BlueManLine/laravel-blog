@@ -35,7 +35,11 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {
-	if (Auth::guest()) return Redirect::guest('login');
+	if (Auth::guest())
+    {
+        Session::flash('success', 'Please login first');
+        return Redirect::to('user/login');
+    }
 });
 
 
@@ -57,7 +61,11 @@ Route::filter('auth.basic', function()
 
 Route::filter('guest', function()
 {
-	if (Auth::check()) return Redirect::to('/');
+	if (Auth::check())
+    {
+        Session::flash('success', 'You are still login :)');
+        return Redirect::to('user/account');
+    }
 });
 
 /*
