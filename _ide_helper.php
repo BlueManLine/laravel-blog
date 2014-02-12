@@ -230,6 +230,17 @@ class App extends Illuminate\Support\Facades\App{
 	 }
 
 	/**
+	 * Register a function for determining when to use array sessions.
+	 *
+	 * @param \Closure  $callback
+	 * @return void
+	 * @static 
+	 */
+	 public static function useArraySessions($callback){
+		 Illuminate\Foundation\Application::useArraySessions($callback);
+	 }
+
+	/**
 	 * Determine if the application has booted.
 	 *
 	 * @return bool
@@ -357,6 +368,17 @@ class App extends Illuminate\Support\Facades\App{
 	 }
 
 	/**
+	 * Prepare the request by injecting any services.
+	 *
+	 * @param \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Request
+	 * @static 
+	 */
+	 public static function prepareRequest($request){
+		return Illuminate\Foundation\Application::prepareRequest($request);
+	 }
+
+	/**
 	 * Prepare the given value as a Response object.
 	 *
 	 * @param mixed  $value
@@ -468,6 +490,16 @@ class App extends Illuminate\Support\Facades\App{
 	 }
 
 	/**
+	 * Get the environment variables loader instance.
+	 *
+	 * @return \Illuminate\Config\EnvironmentVariablesLoaderInterface
+	 * @static 
+	 */
+	 public static function getEnvironmentVariablesLoader(){
+		return Illuminate\Foundation\Application::getEnvironmentVariablesLoader();
+	 }
+
+	/**
 	 * Get the service provider repository instance.
 	 *
 	 * @return \Illuminate\Foundation\ProviderRepository
@@ -475,27 +507,6 @@ class App extends Illuminate\Support\Facades\App{
 	 */
 	 public static function getProviderRepository(){
 		return Illuminate\Foundation\Application::getProviderRepository();
-	 }
-
-	/**
-	 * Get the current application locale.
-	 *
-	 * @return string
-	 * @static 
-	 */
-	 public static function getLocale(){
-		return Illuminate\Foundation\Application::getLocale();
-	 }
-
-	/**
-	 * Set the current application locale.
-	 *
-	 * @param string  $locale
-	 * @return void
-	 * @static 
-	 */
-	 public static function setLocale($locale){
-		 Illuminate\Foundation\Application::setLocale($locale);
 	 }
 
 	/**
@@ -550,6 +561,27 @@ class App extends Illuminate\Support\Facades\App{
 	 */
 	 public static function onRequest($method, $parameters = array()){
 		return Illuminate\Foundation\Application::onRequest($method, $parameters);
+	 }
+
+	/**
+	 * Get the current application locale.
+	 *
+	 * @return string
+	 * @static 
+	 */
+	 public static function getLocale(){
+		return Illuminate\Foundation\Application::getLocale();
+	 }
+
+	/**
+	 * Set the current application locale.
+	 *
+	 * @param string  $locale
+	 * @return void
+	 * @static 
+	 */
+	 public static function setLocale($locale){
+		 Illuminate\Foundation\Application::setLocale($locale);
 	 }
 
 	/**
@@ -2201,6 +2233,18 @@ class Cache extends Illuminate\Support\Facades\Cache{
 		 Illuminate\Cache\Repository::offsetUnset($key);
 	 }
 
+	/**
+	 * Register a macro with the Cache class.
+	 *
+	 * @param string $name
+	 * @param callable $callback
+	 * @return void
+	 * @static 
+	 */
+	 public static function macro($name, $callback){
+		 Illuminate\Cache\Repository::macro($name, $callback);
+	 }
+
 }
 
 class ClassLoader extends Illuminate\Support\ClassLoader{
@@ -2482,6 +2526,17 @@ class Cookie extends Illuminate\Support\Facades\Cookie{
 	 */
 	 public static function forget($name){
 		return Illuminate\Cookie\CookieJar::forget($name);
+	 }
+
+	/**
+	 * Determine if a cookie has been queued.
+	 *
+	 * @param string  $key
+	 * @return bool
+	 * @static 
+	 */
+	 public static function hasQueued($key){
+		return Illuminate\Cookie\CookieJar::hasQueued($key);
 	 }
 
 	/**
@@ -3511,6 +3566,33 @@ class Eloquent extends Illuminate\Database\Eloquent\Model{
 	 }
 
 	/**
+	 * Add a basic where clause to the query.
+	 *
+	 * @param string  $column
+	 * @param string  $operator
+	 * @param mixed   $value
+	 * @param string  $boolean
+	 * @return \Illuminate\Database\Eloquent\Builder|static
+	 * @static 
+	 */
+	 public static function where($column, $operator = null, $value = null, $boolean = 'and'){
+		return Illuminate\Database\Eloquent\Builder::where($column, $operator, $value, $boolean);
+	 }
+
+	/**
+	 * Add an "or where" clause to the query.
+	 *
+	 * @param string  $column
+	 * @param string  $operator
+	 * @param mixed   $value
+	 * @return \Illuminate\Database\Eloquent\Builder|static
+	 * @static 
+	 */
+	 public static function orWhere($column, $operator = null, $value = null){
+		return Illuminate\Database\Eloquent\Builder::orWhere($column, $operator, $value);
+	 }
+
+	/**
 	 * Add a relationship count condition to the query.
 	 *
 	 * @param string  $relation
@@ -3641,6 +3723,17 @@ class Eloquent extends Illuminate\Database\Eloquent\Model{
 	 }
 
 	/**
+	 * Add a new "raw" select expression to the query.
+	 *
+	 * @param string  $expression
+	 * @return \Illuminate\Database\Query\Builder|static
+	 * @static 
+	 */
+	 public static function selectRaw($expression){
+		return Illuminate\Database\Query\Builder::selectRaw($expression);
+	 }
+
+	/**
 	 * Add a new select column to the query.
 	 *
 	 * @param mixed  $column
@@ -3732,34 +3825,6 @@ class Eloquent extends Illuminate\Database\Eloquent\Model{
 	 }
 
 	/**
-	 * Add a basic where clause to the query.
-	 *
-	 * @param string  $column
-	 * @param string  $operator
-	 * @param mixed   $value
-	 * @param string  $boolean
-	 * @return \Illuminate\Database\Query\Builder|static
-	 * @throws \InvalidArgumentException
-	 * @static 
-	 */
-	 public static function where($column, $operator = null, $value = null, $boolean = 'and'){
-		return Illuminate\Database\Query\Builder::where($column, $operator, $value, $boolean);
-	 }
-
-	/**
-	 * Add an "or where" clause to the query.
-	 *
-	 * @param string  $column
-	 * @param string  $operator
-	 * @param mixed   $value
-	 * @return \Illuminate\Database\Query\Builder|static
-	 * @static 
-	 */
-	 public static function orWhere($column, $operator = null, $value = null){
-		return Illuminate\Database\Query\Builder::orWhere($column, $operator, $value);
-	 }
-
-	/**
 	 * Add a raw where clause to the query.
 	 *
 	 * @param string  $sql
@@ -3846,6 +3911,18 @@ class Eloquent extends Illuminate\Database\Eloquent\Model{
 	 */
 	 public static function whereNested($callback, $boolean = 'and'){
 		return Illuminate\Database\Query\Builder::whereNested($callback, $boolean);
+	 }
+
+	/**
+	 * Add another query builder as a nested where to the query builder.
+	 *
+	 * @param \Illuminate\Database\Query\Builder|static $query
+	 * @param string  $boolean
+	 * @return \Illuminate\Database\Query\Builder|static
+	 * @static 
+	 */
+	 public static function addNestedWhereQuery($query, $boolean = 'and'){
+		return Illuminate\Database\Query\Builder::addNestedWhereQuery($query, $boolean);
 	 }
 
 	/**
@@ -4556,14 +4633,14 @@ class Event extends Illuminate\Support\Facades\Event{
 	/**
 	 * Register an event listener with the dispatcher.
 	 *
-	 * @param string  $event
+	 * @param string|array  $event
 	 * @param mixed   $listener
 	 * @param int     $priority
 	 * @return void
 	 * @static 
 	 */
-	 public static function listen($event, $listener, $priority = 0){
-		 Illuminate\Events\Dispatcher::listen($event, $listener, $priority);
+	 public static function listen($events, $listener, $priority = 0){
+		 Illuminate\Events\Dispatcher::listen($events, $listener, $priority);
 	 }
 
 	/**
@@ -4714,17 +4791,6 @@ class File extends Illuminate\Support\Facades\File{
 	 */
 	 public static function get($path){
 		return Illuminate\Filesystem\Filesystem::get($path);
-	 }
-
-	/**
-	 * Get the contents of a remote file.
-	 *
-	 * @param string  $path
-	 * @return string
-	 * @static 
-	 */
-	 public static function getRemote($path){
-		return Illuminate\Filesystem\Filesystem::getRemote($path);
 	 }
 
 	/**
@@ -5764,6 +5830,16 @@ class Input extends Illuminate\Support\Facades\Input{
 	 }
 
 	/**
+	 * Get the current encoded path info for the request.
+	 *
+	 * @return string
+	 * @static 
+	 */
+	 public static function decodedPath(){
+		return Illuminate\Http\Request::decodedPath();
+	 }
+
+	/**
 	 * Get a segment from the URI (1 based index).
 	 *
 	 * @param string  $index
@@ -5788,12 +5864,12 @@ class Input extends Illuminate\Support\Facades\Input{
 	/**
 	 * Determine if the current request URI matches a pattern.
 	 *
-	 * @param string  $pattern
+	 * @param dynamic  string
 	 * @return bool
 	 * @static 
 	 */
-	 public static function is($pattern){
-		return Illuminate\Http\Request::is($pattern);
+	 public static function is(){
+		return Illuminate\Http\Request::is();
 	 }
 
 	/**
@@ -7206,6 +7282,27 @@ class Lang extends Illuminate\Support\Facades\Lang{
 	 }
 
 	/**
+	 * Set the fallback locale being used.
+	 *
+	 * @return string
+	 * @static 
+	 */
+	 public static function getFallback(){
+		return Illuminate\Translation\Translator::getFallback();
+	 }
+
+	/**
+	 * Set the fallback locale being used.
+	 *
+	 * @param string  $fallback
+	 * @return void
+	 * @static 
+	 */
+	 public static function setFallback($fallback){
+		 Illuminate\Translation\Translator::setFallback($fallback);
+	 }
+
+	/**
 	 * Set the parsed value of a key.
 	 *
 	 * @param string  $key
@@ -7300,6 +7397,17 @@ class Log extends Illuminate\Support\Facades\Log{
 	 */
 	 public static function setEventDispatcher($dispatcher){
 		 Illuminate\Log\Writer::setEventDispatcher($dispatcher);
+	 }
+
+	/**
+	 * Dynamically pass log calls into the writer.
+	 *
+	 * @param dynamic (level, param, param)
+	 * @return mixed
+	 * @static 
+	 */
+	 public static function write(){
+		return Illuminate\Log\Writer::write();
 	 }
 
 	/**
@@ -8379,6 +8487,16 @@ class Request extends Illuminate\Support\Facades\Request{
 	 }
 
 	/**
+	 * Get the current encoded path info for the request.
+	 *
+	 * @return string
+	 * @static 
+	 */
+	 public static function decodedPath(){
+		return Illuminate\Http\Request::decodedPath();
+	 }
+
+	/**
 	 * Get a segment from the URI (1 based index).
 	 *
 	 * @param string  $index
@@ -8403,12 +8521,12 @@ class Request extends Illuminate\Support\Facades\Request{
 	/**
 	 * Determine if the current request URI matches a pattern.
 	 *
-	 * @param string  $pattern
+	 * @param dynamic  string
 	 * @return bool
 	 * @static 
 	 */
-	 public static function is($pattern){
-		return Illuminate\Http\Request::is($pattern);
+	 public static function is(){
+		return Illuminate\Http\Request::is();
 	 }
 
 	/**
@@ -9871,6 +9989,17 @@ class Route extends Illuminate\Support\Facades\Route{
 	 }
 
 	/**
+	 * Register a route matched event listener.
+	 *
+	 * @param callable  $callback
+	 * @return void
+	 * @static 
+	 */
+	 public static function matched($callback){
+		 Illuminate\Routing\Router::matched($callback);
+	 }
+
+	/**
 	 * Register a new "before" filter with the router.
 	 *
 	 * @param mixed  $callback
@@ -9914,6 +10043,19 @@ class Route extends Illuminate\Support\Facades\Route{
 	 */
 	 public static function when($pattern, $name, $methods = null){
 		 Illuminate\Routing\Router::when($pattern, $name, $methods);
+	 }
+
+	/**
+	 * Register a regular expression based filter with the router.
+	 *
+	 * @param string     $pattern
+	 * @param string     $name
+	 * @param array|null $methods
+	 * @return void
+	 * @static 
+	 */
+	 public static function whenRegex($pattern, $name, $methods = null){
+		 Illuminate\Routing\Router::whenRegex($pattern, $name, $methods);
 	 }
 
 	/**
@@ -10297,6 +10439,18 @@ class Schema extends Illuminate\Support\Facades\Schema{
 		return Illuminate\Database\Schema\MySqlBuilder::setConnection($connection);
 	 }
 
+	/**
+	 * Set the Schema Blueprint resolver callback.
+	 *
+	 * @param \Closure  $resolver
+	 * @return void
+	 * @static 
+	 */
+	 public static function blueprintResolver($resolver){
+		//Method inherited from Illuminate\Database\Schema\Builder
+		 Illuminate\Database\Schema\MySqlBuilder::blueprintResolver($resolver);
+	 }
+
 }
 
 class Seeder extends Illuminate\Database\Seeder{
@@ -10489,11 +10643,12 @@ class Session extends Illuminate\Support\Facades\Session{
 	/**
 	 * Generate a new session identifier.
 	 *
+	 * @param bool  $destroy
 	 * @return bool
 	 * @static 
 	 */
-	 public static function regenerate(){
-		return Illuminate\Session\Store::regenerate();
+	 public static function regenerate($destroy = false){
+		return Illuminate\Session\Store::regenerate($destroy);
 	 }
 
 	/**
@@ -11104,7 +11259,7 @@ class Validator extends Illuminate\Support\Facades\Validator{
 	 * Register a custom validator extension.
 	 *
 	 * @param string  $rule
-	 * @param Closure|string  $extension
+	 * @param \Closure|string  $extension
 	 * @param string  $message
 	 * @return void
 	 * @static 
@@ -11117,13 +11272,25 @@ class Validator extends Illuminate\Support\Facades\Validator{
 	 * Register a custom implicit validator extension.
 	 *
 	 * @param string   $rule
-	 * @param Closure  $extension
+	 * @param \Closure|string  $extension
 	 * @param string  $message
 	 * @return void
 	 * @static 
 	 */
 	 public static function extendImplicit($rule, $extension, $message = null){
 		 Illuminate\Validation\Factory::extendImplicit($rule, $extension, $message);
+	 }
+
+	/**
+	 * Register a custom implicit validator message replacer.
+	 *
+	 * @param string   $rule
+	 * @param \Closure|string  $replacer
+	 * @return void
+	 * @static 
+	 */
+	 public static function replacer($rule, $replacer){
+		 Illuminate\Validation\Factory::replacer($rule, $replacer);
 	 }
 
 	/**
