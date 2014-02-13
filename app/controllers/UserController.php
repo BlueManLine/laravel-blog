@@ -204,7 +204,7 @@ class UserController extends BaseController
 
     public function getLogin()
     {
-        if (Auth::check())
+        if (Auth::user()->check())
         {
             Session::flash('success', 'You are still login :)');
             return Redirect::to('user/account');
@@ -215,7 +215,7 @@ class UserController extends BaseController
 
     public function postLogin()
     {
-        if (Auth::check())
+        if (Auth::user()->check())
         {
             Session::flash('success', 'You are still login :)');
             return Redirect::to('user/account');
@@ -230,7 +230,7 @@ class UserController extends BaseController
 
         if ( !$validation->fails() )
         {
-            if (Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password'))))
+            if (Auth::user()->attempt(array('email' => Input::get('email'), 'password' => Input::get('password'))))
             {
                 return Redirect::intended('user/account');
             }
@@ -249,7 +249,7 @@ class UserController extends BaseController
 
     public function getLogout()
     {
-        Auth::logout();
+        Auth::user()->logout();
 
         Session::flash('success', 'Logout');
         return Redirect::to('/');
