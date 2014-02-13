@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin Control Panel - Laravel Simple Blog</title>
+    <title>Admin Control Panel - {{ Config::get('site.sitename') }}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
