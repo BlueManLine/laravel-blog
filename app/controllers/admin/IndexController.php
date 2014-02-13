@@ -52,4 +52,11 @@ class IndexController extends \BaseController
         return \Redirect::to('admin/index/login')->withInput()->withErrors($validation);
     }
 
+    public function getLogout()
+    {
+        \Auth::admin()->logout();
+
+        \Session::flash('success', 'Logout');
+        return \Redirect::to('admin/index/login');
+    }
 }

@@ -50,7 +50,11 @@ Route::filter('auth.basic', function()
 
 Route::filter('admin.auth', function(Illuminate\Routing\Route $route, Illuminate\Http\Request $request)
 {
-    $aAllowedActions = array('Admin\IndexController@getLogin', 'Admin\IndexController@postLogin');
+    $aAllowedActions = array(
+        'Admin\IndexController@getLogin',
+        'Admin\IndexController@postLogin',
+        'Admin\IndexController@getLogout'
+    );
     if ( !Auth::admin()->check() && !in_array($route->getActionName(), $aAllowedActions) )
     {
         Session::flash('error', 'You must be login to view that page');
