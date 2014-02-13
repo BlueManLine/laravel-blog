@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Off Canvas Template for Bootstrap</title>
+
+    <title>Laravel Simple Blog</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -20,7 +20,6 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
     @yield('js_head')
-
 </head>
 
 <body>
@@ -68,7 +67,12 @@
     <hr>
 
     <footer>
-        <p>&copy; Company 2014</p>
+        <p>
+            &copy; Company 2014
+            <?php if( !\Auth::admin()->check() ) : ?>
+            <span class="pull-right"><a href="{{ URL::to('/admin/index/login') }}">Admin login</a></span>
+            <?php endif; ?>
+        </p>
     </footer>
 
 </div><!--/.container-->

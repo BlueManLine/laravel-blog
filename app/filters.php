@@ -48,6 +48,16 @@ Route::filter('auth.basic', function()
 	return Auth::basic();
 });
 
+Route::filter('admin.auth', function(Illuminate\Routing\Route $route, Illuminate\Http\Request $request)
+{
+    $aAllowedActions = array('Admin\IndexController@getLogin', 'Admin\IndexController@postLogin');
+    if ( !Auth::admin()->check() && !in_array($route->getActionName(), $aAllowedActions) )
+    {
+        Session::flash('error', 'You must be login to view that page');
+        return Redirect::to('admin/index/login');
+    }
+});
+
 /*
 |--------------------------------------------------------------------------
 | Guest Filter

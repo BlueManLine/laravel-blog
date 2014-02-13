@@ -3,9 +3,9 @@
 return array(
 
     'multi' => array(
-        'account' => array(
+        'admin' => array(
             'driver' => 'eloquent',
-            'model' => 'Account'
+            'model' => 'Admin'
         ),
         'user' => array(
             'driver' => 'eloquent',

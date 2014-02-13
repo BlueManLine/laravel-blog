@@ -232,6 +232,11 @@ class UserController extends BaseController
         {
             if (Auth::user()->attempt(array('email' => Input::get('email'), 'password' => Input::get('password'))))
             {
+                // saving login ip and date
+                $user = User::find(\Auth::user()->user()->id);
+                $user->ip_login = Request::getClientIp();
+                $user->save();
+
                 return Redirect::intended('user/account');
             }
         }
