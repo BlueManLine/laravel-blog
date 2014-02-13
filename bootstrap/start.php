@@ -43,6 +43,8 @@ $env = $app->detectEnvironment(array(
 
 $app->bindInstallPaths(require __DIR__.'/paths.php');
 
+require_once $app['path.libraries'].'/functions.php';
+
 /*
 |--------------------------------------------------------------------------
 | Load The Application

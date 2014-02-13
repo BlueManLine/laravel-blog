@@ -54,4 +54,6 @@ return array(
 
 	'storage' => __DIR__.'/../app/storage',
 
+    'libraries' => __DIR__.'/../app/libraries',
+
 );
