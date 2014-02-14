@@ -6,6 +6,8 @@
  * @author   Taylor Otwell <taylorotwell@gmail.com>
  */
 
+define('DS', DIRECTORY_SEPARATOR);
+
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader

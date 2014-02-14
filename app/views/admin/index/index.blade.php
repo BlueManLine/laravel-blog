@@ -153,3 +153,7 @@
     </table>
 </div>
 @stop
+
+@section('js_foot')
+<script src="/js-libraries/holder.js"></script>
+@stop

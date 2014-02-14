@@ -1,18 +1,17 @@
 <ul class="nav nav-sidebar">
-    <li class="active"><a href="#">Overview</a></li>
-    <li><a href="#">Reports</a></li>
-    <li><a href="#">Analytics</a></li>
-    <li><a href="#">Export</a></li>
+    <li class="{{ Helpers\MrView::activeLaravelLink('Admin\IndexController@getIndex', 'active') }}"><a href="{{ URL::to('admin/') }}">Dashboard</a></li>
 </ul>
+
+<span class="glyphicon glyphicon-edit"></span> Posts
 <ul class="nav nav-sidebar">
-    <li><a href="">Nav item</a></li>
-    <li><a href="">Nav item again</a></li>
-    <li><a href="">One more nav</a></li>
-    <li><a href="">Another nav item</a></li>
-    <li><a href="">More navigation</a></li>
+    <li class="{{ Helpers\MrView::activeLaravelLink('Admin\PostsController@*Create', 'active') }}"><a href="{{ URL::to('admin/posts/create') }}">Add new</a></li>
+    <li><a href="#">List</a></li>
+    <li><a href="#">Tags</a></li>
 </ul>
+
+<span class="glyphicon glyphicon-user"></span> Users
 <ul class="nav nav-sidebar">
-    <li><a href="">Nav item again</a></li>
-    <li><a href="">One more nav</a></li>
-    <li><a href="">Another nav item</a></li>
+    <li><a href="">Add new</a></li>
+    <li><a href="">List</a></li>
+    <li><a href="#">Comments</a></li>
 </ul>

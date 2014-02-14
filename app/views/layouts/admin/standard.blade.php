@@ -20,6 +20,12 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
     @yield('js_head')
+
+    <script type="text/javascript">
+        var _config = {};
+        _config.controller = '{{ \Helpers\MrView::getControllerAction('controller') }}';
+        _config.action = '{{ \Helpers\MrView::getControllerAction('action') }}';
+    </script>
 </head>
 
 <body>
@@ -57,7 +63,7 @@
             @include('admin.partials.sidebar')
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Dashboard</h1>
+            <h1 class="page-header">{{ isset($page_title) ? $page_title : Config::get('site.sitename') ; }}</h1>
 
             @if (Session::has('error'))
             <div class="alert alert-danger">{{ Session::get('error') }}</div>
@@ -74,7 +80,10 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="/js-libraries/jquery-1.10.2.min.js"></script>
 <script src="/js-libraries/bootstrap.min.js"></script>
-<script src="/js-libraries/holder.js"></script>
+<script src="/js/admin/_site.js"></script>
+<?php if( file_exists($app['path.public'].DS.'js'.DS.'admin'.DS.\Helpers\MrView::getControllerAction('controller').'.js') ) : ?>
+<script src="/js/admin/{{ \Helpers\MrView::getControllerAction('controller') }}.js"></script>
+<?php endif; ?>
 @yield('js_foot')
 </body>
 </html>
