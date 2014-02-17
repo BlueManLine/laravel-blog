@@ -12,11 +12,19 @@ class Post extends BaseModel
         'status' => 'required',
     ];
 
+    /**
+     * function admin
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function admin()
+    {
+        return $this->belongsTo('\Admin');
+    }
+
 
     public function savePost($inputValues=array())
     {
-        $tags = $inputValues['tags'];
-        unset($inputValues['tags']);
         $this->setRecordParams($inputValues);
         $this->slug = $this->generateSlug($this->title);
         $this->admin_id = Auth::admin()->user()->id;

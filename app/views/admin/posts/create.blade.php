@@ -15,12 +15,6 @@
     </div>
 
     <div class="form-group">
-        <label for="tags">Tags</label>
-        <input type="text" name="tags" id="tags" class="form-control" placeholder="Tags">
-        <?php echo \Helpers\Form::errors($errors->first('tags')); ?>
-    </div>
-
-    <div class="form-group">
         <label for="optionsRadios1">Visible</label>
         <div class="radio">
             <label>
