@@ -47,7 +47,7 @@ class PostsController extends BaseController
     {
         $post = \Post::find($post_id);
 
-        if( !is_null($post->id) )
+        if( !is_null($post) )
         {
             // ok - model loaded
             $post->status = $post->status==1 ? 0 : 1;
