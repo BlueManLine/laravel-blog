@@ -14,6 +14,27 @@ class PostsController extends BaseController
 
     public function postCreate()
     {
+        $validator = \Validator::make(\Input::all(), \Post::$rules);
+
+        if ( $validator->passes() )
+        {
+            $post = new \Post();
+            $record = $post->savePost(\Input::all());
+
+            if( $record===true )
+            {
+                \Session::flash('success', 'Nice, post added!');
+                return \Redirect::to('admin/posts');
+            }
+        }
+
+        // Validation has failed.
+        \Session::flash('error', 'Please complete correctly all fields');
+        return \Redirect::to('admin/posts/create')->withInput()->withErrors($validator);
+    }
+
+    public function getIndex()
+    {
 
     }
 
