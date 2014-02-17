@@ -5,8 +5,7 @@
 <span class="glyphicon glyphicon-edit"></span> Posts
 <ul class="nav nav-sidebar">
     <li class="{{ Helpers\MrView::activeLaravelLink('Admin\PostsController@*Create', 'active') }}"><a href="{{ URL::to('admin/posts/create') }}">Add new</a></li>
-    <li><a href="#">List</a></li>
-    <li><a href="#">Tags</a></li>
+    <li class="{{ Helpers\MrView::activeLaravelLink('Admin\PostsController@*Index', 'active') }}"><a href="{{ URL::to('admin/posts') }}">List</a></li>
 </ul>
 
 <span class="glyphicon glyphicon-user"></span> Users
