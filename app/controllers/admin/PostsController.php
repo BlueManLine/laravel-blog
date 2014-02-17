@@ -43,6 +43,61 @@ class PostsController extends BaseController
             ->with('posts', $posts);
     }
 
+    public function getEdit($post_id)
+    {
+        $this->setTitle('Edit a post');
+
+        $post = \Post::find($post_id);
+
+        if( !is_null($post) )
+        {
+            // ok - model loaded
+
+            return \View::make('admin.posts.edit')
+                ->with('post', $post);
+        }
+        else
+        {
+            \Session::flash('error', 'Unknown post ID');
+        }
+
+        return \Redirect::to('admin/posts');
+    }
+
+    public function putEdit($post_id)
+    {
+        $post = \Post::find($post_id);
+
+        if( !is_null($post) )
+        {
+            $rules = \Post::$rules;
+            $rules['title'] = 'required|unique:posts,title,'.$post_id;
+
+            $validator = \Validator::make(\Input::all(), $rules);
+
+            if ( $validator->passes() )
+            {
+                $record = $post->savePost(\Input::all());
+
+                if( $record===true )
+                {
+                    \Session::flash('success', 'Nice, post changed!');
+                    return \Redirect::to('admin/posts');
+                }
+            }
+
+            // Validation has failed.
+            \Session::flash('error', 'Please complete correctly all fields');
+            return \Redirect::to('admin/posts/edit/'.$post_id)->withInput()->withErrors($validator);
+        }
+        else
+        {
+            \Session::flash('error', 'Unknown post ID');
+        }
+
+        return \Redirect::to('admin/posts');
+    }
+
     public function getVisibility($post_id)
     {
         $post = \Post::find($post_id);

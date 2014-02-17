@@ -28,8 +28,8 @@
             <td><?php echo mb_substr($post->post,0,100); ?></td>
             <td>
                 <div class="btn-group btn-group-sm">
-                    <a href="" class="btn btn-success">Edit</a>
-                    <a href="{{ URL::to('admin/posts/visibility/'.$post->id) }}" class="btn btn-default"><?php echo $post->status==1 ? 'Hide' : 'Make visible'; ?></a>
+                    <a href="{{ URL::to('admin/posts/edit/'.$post->id) }}" class="btn btn-success">Edit</a>
+                    <a href="{{ URL::to('admin/posts/visibility/'.$post->id) }}" class="btn btn-default"><?php echo $post->status==1 ? 'Hide it' : 'Make visible'; ?></a>
                 </div>
             </td>
             <td><?php echo $post->created_at; ?></td>
