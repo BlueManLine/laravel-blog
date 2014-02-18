@@ -55,6 +55,8 @@
                 <p class="lead blog-description">Really simple Laravel Blog with Twitter Bootstrap</p>
             </div>
 
+            <hr />
+
             <!-- will be used to show any messages -->
             @if (Session::has('error'))
             <div class="alert alert-danger">{{ Session::get('error') }}</div>

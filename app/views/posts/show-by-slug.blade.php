@@ -1,7 +1,6 @@
 @extends('layouts.master')
 
 @section('content')
-<hr />
 <div class="blog-post">
     <?php if( !is_null($record) && ($record->status==1 || ( $record->status==0 && Auth::admin()->check() ) ) ) : ?>
         <h2 class="blog-post-title">{{ $record->title }}</h2>

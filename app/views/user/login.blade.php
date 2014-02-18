@@ -23,7 +23,7 @@
         {{ Form::close() }}
 
         <br />
-        <p>
+        <p style="display:none;">
             {{ link_to('user/remind','Remind a password') }}
         </p>
 

@@ -230,7 +230,7 @@ class UserController extends BaseController
 
         if ( !$validation->fails() )
         {
-            if (Auth::user()->attempt(array('email' => Input::get('email'), 'password' => Input::get('password'))))
+            if (Auth::user()->attempt(array('email' => Input::get('email'), 'password' => Input::get('password'), 'status' => 1)))
             {
                 // saving login ip and date
                 $user = User::find(\Auth::user()->user()->id);
@@ -250,6 +250,32 @@ class UserController extends BaseController
     public function getAccount()
     {
         return View::make('user.account');
+    }
+
+    public function postAccount()
+    {
+        $rules = array(
+            'nick'     => array('required', 'unique:users,nick,'.Auth::user()->user()->id),
+        );
+
+        $validation = Validator::make(Input::all(), $rules);
+
+        if ( $validation->passes() )
+        {
+            $user = User::find(Auth::user()->user()->id);
+            $user->nick = Input::get('nick');
+            $user->save();
+
+            // saving changes
+            Session::flash('success', 'Data saved');
+            return Redirect::to('user/account');
+        }
+        else
+        {
+            // Validation has failed.
+            Session::flash('error', 'Incorrect email or password');
+            return Redirect::to('user/account')->withInput()->withErrors($validation);
+        }
     }
 
     public function getLogout()
