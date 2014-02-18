@@ -230,7 +230,7 @@ class UserController extends BaseController
 
         if ( !$validation->fails() )
         {
-            if (Auth::user()->attempt(array('email' => Input::get('email'), 'password' => Input::get('password'), 'status' => 1)))
+            if (Auth::user()->attempt(array('email' => Input::get('email'), 'password' => Input::get('password'), 'status' => User::status_active)))
             {
                 // saving login ip and date
                 $user = User::find(\Auth::user()->user()->id);

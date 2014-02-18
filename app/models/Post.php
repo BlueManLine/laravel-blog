@@ -22,6 +22,16 @@ class Post extends BaseModel
         return $this->belongsTo('\Admin');
     }
 
+    /**
+     * function comments
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany('\Comment');
+    }
+
 
     public function savePost($inputValues=array())
     {

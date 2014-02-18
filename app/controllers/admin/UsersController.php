@@ -22,7 +22,7 @@ class UsersController extends BaseController
         if( !is_null($user) )
         {
             // ok - model loaded
-            $user->status = $user->status==1 ? 0 : 1;
+            $user->status = $user->status==\User::status_active ? \User::status_banned : \User::status_active;
             $user->save();
 
             \Session::flash('success', 'Status changed');

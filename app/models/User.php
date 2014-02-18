@@ -6,13 +6,6 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'users';
-
-	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
 	 * @var array
@@ -32,6 +25,18 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      * @var array
      */
     public static $aStatuses = array(self::status_inactive, self::status_active, self::status_banned);
+
+
+    /**
+     * function comments
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany('\Comment');
+    }
+
 
     /**
      * Generate an hash used be hash field in User model

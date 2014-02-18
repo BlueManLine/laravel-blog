@@ -6,13 +6,6 @@ class Admin extends Eloquent implements UserInterface
 {
 
 	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'admins';
-
-	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
 	 * @var array
@@ -31,6 +24,17 @@ class Admin extends Eloquent implements UserInterface
      * @var array
      */
     public static $aStatuses = array(self::status_inactive, self::status_active);
+
+
+    /**
+     * function comments
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany('\Comment');
+    }
 
 
     /**
