@@ -10,7 +10,7 @@
 
 <span class="glyphicon glyphicon-user"></span> Users
 <ul class="nav nav-sidebar">
-    <li><a href="">Add new</a></li>
+    <li><a href="#">Add new</a></li>
     <li class="{{ Helpers\MrView::activeLaravelLink('Admin\UsersController@*Index', 'active') }}"><a href="{{ URL::to('admin/users') }}">List</a></li>
     <li><a href="#">Comments</a></li>
 </ul>
