@@ -8,6 +8,7 @@ Route::group(array('prefix' => 'admin', 'before' => 'admin.auth'), function()
 {
     Route::controller('index', 'Admin\IndexController');
     Route::controller('posts', 'Admin\PostsController');
+    Route::controller('users', 'Admin\UsersController');
 
     Route::controller('/', 'Admin\IndexController');
 });
