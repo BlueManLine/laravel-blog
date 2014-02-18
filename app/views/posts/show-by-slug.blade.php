@@ -37,7 +37,7 @@
             <?php if( Auth::user()->check() || Auth::admin()->check() ) : ?>
                 <form action="" method="post" class="form-horizontal">
                     <div class="form-group">
-                        <?php echo Form::label('text', 'Yout comment'); ?>
+                        <?php echo Form::label('text', 'Your comment'); ?>
                         <?php echo Form::textarea('text', null, array('class' => 'form-control', 'rows'=>5, 'cols'=>10)); ?>
                     </div>
 

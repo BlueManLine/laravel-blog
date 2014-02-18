@@ -22,8 +22,27 @@ class PostsController extends BaseController
 
         if( !is_null($record) )
         {
-            $comment = new Comment(array('body' => Input::get('text')));
-            $commented = $record->comments()->save($comment);
+            $rules = array(
+                'text'     => array('required', 'min:2'),
+            );
+
+            $validation = \Validator::make(\Input::all(), $rules);
+
+            if ( $validation->passes() )
+            {
+                $comment = new Comment(array('body' => Input::get('text')));
+                $commented = $record->comments()->save($comment);
+
+                Session::flash('success', 'Comment add');
+            }
+            else
+            {
+                Session::flash('error', 'Please fill the comment field');
+            }
+        }
+        else
+        {
+            Session::flash('error', 'The post doesnt exists.');
         }
 
         return Redirect::to(Request::url());

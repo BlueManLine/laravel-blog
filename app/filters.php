@@ -33,21 +33,6 @@ App::after(function($request, $response)
 |
 */
 
-Route::filter('auth', function()
-{
-	if (Auth::guest())
-    {
-        Session::flash('success', 'Please login first');
-        return Redirect::to('user/login');
-    }
-});
-
-
-Route::filter('auth.basic', function()
-{
-	return Auth::basic();
-});
-
 Route::filter('admin.auth', function(Illuminate\Routing\Route $route, Illuminate\Http\Request $request)
 {
     $aAllowedActions = array(
@@ -75,10 +60,19 @@ Route::filter('admin.auth', function(Illuminate\Routing\Route $route, Illuminate
 
 Route::filter('guest', function()
 {
-	if (Auth::check())
+	if ( Auth::user()->check() )
     {
         Session::flash('success', 'You are still login :)');
         return Redirect::to('user/account');
+    }
+});
+
+Route::filter('auth.anybody', function()
+{
+    if ( !Auth::user()->check() && !Auth::admin()->check() )
+    {
+        Session::flash('success', 'Please login first');
+        return Redirect::to('user/login');
     }
 });
 
