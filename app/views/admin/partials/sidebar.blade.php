@@ -12,5 +12,5 @@
 <ul class="nav nav-sidebar">
     <li><a href="#">Add new</a></li>
     <li class="{{ Helpers\MrView::activeLaravelLink('Admin\UsersController@*Index', 'active') }}"><a href="{{ URL::to('admin/users') }}">List</a></li>
-    <li><a href="#">Comments</a></li>
+    <li class="{{ Helpers\MrView::activeLaravelLink('Admin\CommentsController@*Index', 'active') }}"><a href="{{ URL::to('admin/comments') }}">Comments</a></li>
 </ul>
