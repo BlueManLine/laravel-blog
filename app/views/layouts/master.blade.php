@@ -49,6 +49,12 @@
     <div class="row row-offcanvas row-offcanvas-right">
 
         <div class="col-xs-12 col-sm-9">
+
+            <div class="blog-header">
+                <h1 class="blog-title">{{ Config::get('site.sitename') }}</h1>
+                <p class="lead blog-description">Really simple Laravel Blog with Twitter Bootstrap</p>
+            </div>
+
             <!-- will be used to show any messages -->
             @if (Session::has('error'))
             <div class="alert alert-danger">{{ Session::get('error') }}</div>

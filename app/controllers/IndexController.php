@@ -1,12 +1,14 @@
 <?php
 
-class IndexController extends BaseController {
-
-    //protected $layout = 'layouts.master';
+class IndexController extends BaseController
+{
 
     public function getIndex()
 	{
-        return View::make('hello');
+        $posts = Post::where('status', '=', 1)->take(15)->get();
+
+        return View::make('index.hello')
+            ->with('posts', $posts);
 	}
 
 }
