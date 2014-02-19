@@ -26,6 +26,7 @@
             <td>{{ $user->email.'<br/>'.$user->nick }}</td>
             <td>
                 <div class="btn-group btn-group-sm">
+                    <a href="{{ URL::to('admin/users/edit/'.$user->id) }}" class="btn btn-success">Edit</a>
                     <a href="{{ URL::to('admin/users/status/'.$user->id) }}" class="btn btn-default"><?php echo $user->status==1 ? 'Unactive it' : 'Active it'; ?></a>
                 </div>
             </td>
