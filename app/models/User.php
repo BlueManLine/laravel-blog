@@ -3,9 +3,18 @@
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
+class User extends Eloquent implements UserInterface, RemindableInterface
+{
+    /**
+     * Rules for form validator
+     * @var array rules
+     */
+    public static $rules = [
+        'nick' => 'required|unique:users',
+        'email' => 'required|unique:users',
+    ];
 
-	/**
+    /**
 	 * The attributes excluded from the model's JSON form.
 	 *
 	 * @var array
