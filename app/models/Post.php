@@ -33,7 +33,14 @@ class Post extends BaseModel
     }
 
 
-    public function savePost($inputValues=array())
+    /**
+     * Creating or editing a post
+     *
+     * @param array $inputValues    input values from form
+     *
+     * @return bool
+     */
+    public function savePost(array $inputValues)
     {
         $this->setRecordParams($inputValues);
         $this->slug = $this->generateSlug($this->title);
@@ -41,7 +48,15 @@ class Post extends BaseModel
         return $this->save();
     }
 
-    private function generateSlug($string,$space="-")
+    /**
+     * Generate a slug of given string - spider friendly
+     *
+     * @param        $string    a string to slugify
+     * @param string $space     OPTIONAL every spice will be replace by "-" or whatever you pass
+     *
+     * @return bool|mixed|string
+     */
+    private function generateSlug($string, $space="-")
     {
         if (function_exists('iconv'))
         {

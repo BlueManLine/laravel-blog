@@ -49,7 +49,11 @@ class Comment extends BaseModel
         return $this->belongsTo('\Admin');
     }
 
-
+    /**
+     * Getting an comment author details - it could be an admin or user
+     *
+     * @return \stdClass
+     */
     public function getAuthor()
     {
         $author = new \stdClass();
