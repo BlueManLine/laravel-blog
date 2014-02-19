@@ -21,6 +21,9 @@
         </div>
         <?php endfor; ?>
     </div>
+
+    <?php echo $posts->links(); ?>
+
     <?php endif; ?>
 <?php else : ?>
     <div class="alert alert-success"><strong>Well done!</strong> Now start adding a posts :)</div>

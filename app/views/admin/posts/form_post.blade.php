@@ -1,4 +1,4 @@
-<?php echo Form::model($post, array('class' => 'form-horizontal', 'method' => 'put')); ?>
+<?php echo Form::model($post, array('class' => 'form-horizontal')); ?>
     <div class="form-group">
         <?php echo Form::label('title', 'Title'); ?>
         <?php echo Form::text('title', null, array('class'=>'form-control','placeholder'=>'Enter post title')); ?>
@@ -25,6 +25,7 @@
                 Hide
             </label>
         </div>
+        <?php echo \Helpers\Form::errors($errors->first('status')); ?>
     </div>
 
     <button type="submit" class="btn btn-default">Submit</button>

@@ -64,7 +64,7 @@ class PostsController extends BaseController
         return \Redirect::to('admin/posts');
     }
 
-    public function putEdit($post_id)
+    public function postEdit($post_id)
     {
         $post = \Post::find($post_id);
 

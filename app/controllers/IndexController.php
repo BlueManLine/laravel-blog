@@ -5,9 +5,9 @@ class IndexController extends BaseController
 
     public function getIndex()
 	{
-        $posts = Post::where('status', '=', 1)->take(15)->get();
+        $posts = Post::where('status', '=', 1)->orderBy('id','DESC')->paginate(15);
 
-        return View::make('index.hello')
+        return View::make('index.index')
             ->with('posts', $posts);
 	}
 
