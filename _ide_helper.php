@@ -1420,6 +1420,599 @@ class Artisan extends Illuminate\Support\Facades\Artisan{
 
 }
 
+class Auth extends Illuminate\Support\Facades\Auth{
+	/**
+	 * 
+	 *
+	 * @static 
+	 */
+	 public static function __construct($app){
+		 Ollieread\Multiauth\MultiManager::__construct($app);
+	 }
+
+	/**
+	 * 
+	 *
+	 * @static 
+	 */
+	 public static function __call($name, $arguments){
+		 Ollieread\Multiauth\MultiManager::__call($name, $arguments);
+	 }
+
+	/**
+	 * Execute the console command.
+	 *
+	 * @return void
+	 * @static 
+	 */
+	 public static function fire(){
+		 Barryvdh\LaravelIdeHelper\GeneratorCommand::fire();
+	 }
+
+	/**
+	 * 
+	 *
+	 * @static 
+	 */
+	 public static function getDriver($alias){
+		 Barryvdh\LaravelIdeHelper\GeneratorCommand::getDriver($alias);
+	 }
+
+	/**
+	 * Get the parameters and format them correctly
+	 *
+	 * @param $method
+	 * @return array
+	 * @static 
+	 */
+	 public static function getParameters($method){
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::getParameters($method);
+	 }
+
+	/**
+	 * Run the console command.
+	 *
+	 * @param \Symfony\Component\Console\Input\InputInterface  $input
+	 * @param \Symfony\Component\Console\Output\OutputInterface  $output
+	 * @return integer
+	 * @static 
+	 */
+	 public static function run($input, $output){
+		//Method inherited from Illuminate\Console\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::run($input, $output);
+	 }
+
+	/**
+	 * Call another console command.
+	 *
+	 * @param string  $command
+	 * @param array   $arguments
+	 * @return integer
+	 * @static 
+	 */
+	 public static function call($command, $arguments = array()){
+		//Method inherited from Illuminate\Console\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::call($command, $arguments);
+	 }
+
+	/**
+	 * Call another console command silently.
+	 *
+	 * @param string  $command
+	 * @param array   $arguments
+	 * @return integer
+	 * @static 
+	 */
+	 public static function callSilent($command, $arguments = array()){
+		//Method inherited from Illuminate\Console\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::callSilent($command, $arguments);
+	 }
+
+	/**
+	 * Get the value of a command argument.
+	 *
+	 * @param string  $key
+	 * @return string|array
+	 * @static 
+	 */
+	 public static function argument($key = null){
+		//Method inherited from Illuminate\Console\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::argument($key);
+	 }
+
+	/**
+	 * Get the value of a command option.
+	 *
+	 * @param string  $key
+	 * @return string|array
+	 * @static 
+	 */
+	 public static function option($key = null){
+		//Method inherited from Illuminate\Console\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::option($key);
+	 }
+
+	/**
+	 * Confirm a question with the user.
+	 *
+	 * @param string  $question
+	 * @param bool    $default
+	 * @return bool
+	 * @static 
+	 */
+	 public static function confirm($question, $default = true){
+		//Method inherited from Illuminate\Console\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::confirm($question, $default);
+	 }
+
+	/**
+	 * Prompt the user for input.
+	 *
+	 * @param string  $question
+	 * @param string  $default
+	 * @return string
+	 * @static 
+	 */
+	 public static function ask($question, $default = null){
+		//Method inherited from Illuminate\Console\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::ask($question, $default);
+	 }
+
+	/**
+	 * Prompt the user for input but hide the answer from the console.
+	 *
+	 * @param string  $question
+	 * @param bool    $fallback
+	 * @return string
+	 * @static 
+	 */
+	 public static function secret($question, $fallback = true){
+		//Method inherited from Illuminate\Console\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::secret($question, $fallback);
+	 }
+
+	/**
+	 * Write a string as standard output.
+	 *
+	 * @param string  $string
+	 * @return void
+	 * @static 
+	 */
+	 public static function line($string){
+		//Method inherited from Illuminate\Console\Command
+		 Barryvdh\LaravelIdeHelper\GeneratorCommand::line($string);
+	 }
+
+	/**
+	 * Write a string as information output.
+	 *
+	 * @param string  $string
+	 * @return void
+	 * @static 
+	 */
+	 public static function info($string){
+		//Method inherited from Illuminate\Console\Command
+		 Barryvdh\LaravelIdeHelper\GeneratorCommand::info($string);
+	 }
+
+	/**
+	 * Write a string as comment output.
+	 *
+	 * @param string  $string
+	 * @return void
+	 * @static 
+	 */
+	 public static function comment($string){
+		//Method inherited from Illuminate\Console\Command
+		 Barryvdh\LaravelIdeHelper\GeneratorCommand::comment($string);
+	 }
+
+	/**
+	 * Write a string as question output.
+	 *
+	 * @param string  $string
+	 * @return void
+	 * @static 
+	 */
+	 public static function question($string){
+		//Method inherited from Illuminate\Console\Command
+		 Barryvdh\LaravelIdeHelper\GeneratorCommand::question($string);
+	 }
+
+	/**
+	 * Write a string as error output.
+	 *
+	 * @param string  $string
+	 * @return void
+	 * @static 
+	 */
+	 public static function error($string){
+		//Method inherited from Illuminate\Console\Command
+		 Barryvdh\LaravelIdeHelper\GeneratorCommand::error($string);
+	 }
+
+	/**
+	 * Get the output implementation.
+	 *
+	 * @return \Symfony\Component\Console\Output\OutputInterface
+	 * @static 
+	 */
+	 public static function getOutput(){
+		//Method inherited from Illuminate\Console\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::getOutput();
+	 }
+
+	/**
+	 * Set the Laravel application instance.
+	 *
+	 * @return \Illuminate\Foundation\Application
+	 * @static 
+	 */
+	 public static function getLaravel(){
+		//Method inherited from Illuminate\Console\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::getLaravel();
+	 }
+
+	/**
+	 * Set the Laravel application instance.
+	 *
+	 * @param \Illuminate\Foundation\Application  $laravel
+	 * @return void
+	 * @static 
+	 */
+	 public static function setLaravel($laravel){
+		//Method inherited from Illuminate\Console\Command
+		 Barryvdh\LaravelIdeHelper\GeneratorCommand::setLaravel($laravel);
+	 }
+
+	/**
+	 * Ignores validation errors.
+	 * 
+	 * This is mainly useful for the help command.
+	 *
+	 * @static 
+	 */
+	 public static function ignoreValidationErrors(){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		 Barryvdh\LaravelIdeHelper\GeneratorCommand::ignoreValidationErrors();
+	 }
+
+	/**
+	 * Sets the application instance for this command.
+	 *
+	 * @param Application $application An Application instance
+	 * @api 
+	 * @static 
+	 */
+	 public static function setApplication($application = null){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		 Barryvdh\LaravelIdeHelper\GeneratorCommand::setApplication($application);
+	 }
+
+	/**
+	 * Sets the helper set.
+	 *
+	 * @param HelperSet $helperSet A HelperSet instance
+	 * @static 
+	 */
+	 public static function setHelperSet($helperSet){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		 Barryvdh\LaravelIdeHelper\GeneratorCommand::setHelperSet($helperSet);
+	 }
+
+	/**
+	 * Gets the helper set.
+	 *
+	 * @return HelperSet A HelperSet instance
+	 * @static 
+	 */
+	 public static function getHelperSet(){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::getHelperSet();
+	 }
+
+	/**
+	 * Gets the application instance for this command.
+	 *
+	 * @return Application An Application instance
+	 * @api 
+	 * @static 
+	 */
+	 public static function getApplication(){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::getApplication();
+	 }
+
+	/**
+	 * Checks whether the command is enabled or not in the current environment
+	 * 
+	 * Override this to check for x or y and return false if the command can not
+	 * run properly under the current conditions.
+	 *
+	 * @return Boolean
+	 * @static 
+	 */
+	 public static function isEnabled(){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::isEnabled();
+	 }
+
+	/**
+	 * Sets the code to execute when running this command.
+	 * 
+	 * If this method is used, it overrides the code defined
+	 * in the execute() method.
+	 *
+	 * @param callable $code A callable(InputInterface $input, OutputInterface $output)
+	 * @return Command The current instance
+	 * @throws \InvalidArgumentException
+	 * @see execute()
+	 * @api 
+	 * @static 
+	 */
+	 public static function setCode($code){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::setCode($code);
+	 }
+
+	/**
+	 * Merges the application definition with the command definition.
+	 * 
+	 * This method is not part of public API and should not be used directly.
+	 *
+	 * @param Boolean $mergeArgs Whether to merge or not the Application definition arguments to Command definition arguments
+	 * @static 
+	 */
+	 public static function mergeApplicationDefinition($mergeArgs = true){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		 Barryvdh\LaravelIdeHelper\GeneratorCommand::mergeApplicationDefinition($mergeArgs);
+	 }
+
+	/**
+	 * Sets an array of argument and option instances.
+	 *
+	 * @param array|InputDefinition $definition An array of argument and option instances or a definition instance
+	 * @return Command The current instance
+	 * @api 
+	 * @static 
+	 */
+	 public static function setDefinition($definition){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::setDefinition($definition);
+	 }
+
+	/**
+	 * Gets the InputDefinition attached to this Command.
+	 *
+	 * @return InputDefinition An InputDefinition instance
+	 * @api 
+	 * @static 
+	 */
+	 public static function getDefinition(){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::getDefinition();
+	 }
+
+	/**
+	 * Gets the InputDefinition to be used to create XML and Text representations of this Command.
+	 * 
+	 * Can be overridden to provide the original command representation when it would otherwise
+	 * be changed by merging with the application InputDefinition.
+	 * 
+	 * This method is not part of public API and should not be used directly.
+	 *
+	 * @return InputDefinition An InputDefinition instance
+	 * @static 
+	 */
+	 public static function getNativeDefinition(){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::getNativeDefinition();
+	 }
+
+	/**
+	 * Adds an argument.
+	 *
+	 * @param string  $name        The argument name
+	 * @param integer $mode        The argument mode: InputArgument::REQUIRED or InputArgument::OPTIONAL
+	 * @param string  $description A description text
+	 * @param mixed   $default     The default value (for InputArgument::OPTIONAL mode only)
+	 * @return Command The current instance
+	 * @api 
+	 * @static 
+	 */
+	 public static function addArgument($name, $mode = null, $description = '', $default = null){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::addArgument($name, $mode, $description, $default);
+	 }
+
+	/**
+	 * Adds an option.
+	 *
+	 * @param string  $name        The option name
+	 * @param string  $shortcut    The shortcut (can be null)
+	 * @param integer $mode        The option mode: One of the InputOption::VALUE_* constants
+	 * @param string  $description A description text
+	 * @param mixed   $default     The default value (must be null for InputOption::VALUE_REQUIRED or InputOption::VALUE_NONE)
+	 * @return Command The current instance
+	 * @api 
+	 * @static 
+	 */
+	 public static function addOption($name, $shortcut = null, $mode = null, $description = '', $default = null){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::addOption($name, $shortcut, $mode, $description, $default);
+	 }
+
+	/**
+	 * Sets the name of the command.
+	 * 
+	 * This method can set both the namespace and the name if
+	 * you separate them by a colon (:)
+	 * 
+	 *     $command->setName('foo:bar');
+	 *
+	 * @param string $name The command name
+	 * @return Command The current instance
+	 * @throws \InvalidArgumentException When the name is invalid
+	 * @api 
+	 * @static 
+	 */
+	 public static function setName($name){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::setName($name);
+	 }
+
+	/**
+	 * Returns the command name.
+	 *
+	 * @return string The command name
+	 * @api 
+	 * @static 
+	 */
+	 public static function getName(){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::getName();
+	 }
+
+	/**
+	 * Sets the description for the command.
+	 *
+	 * @param string $description The description for the command
+	 * @return Command The current instance
+	 * @api 
+	 * @static 
+	 */
+	 public static function setDescription($description){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::setDescription($description);
+	 }
+
+	/**
+	 * Returns the description for the command.
+	 *
+	 * @return string The description for the command
+	 * @api 
+	 * @static 
+	 */
+	 public static function getDescription(){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::getDescription();
+	 }
+
+	/**
+	 * Sets the help for the command.
+	 *
+	 * @param string $help The help for the command
+	 * @return Command The current instance
+	 * @api 
+	 * @static 
+	 */
+	 public static function setHelp($help){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::setHelp($help);
+	 }
+
+	/**
+	 * Returns the help for the command.
+	 *
+	 * @return string The help for the command
+	 * @api 
+	 * @static 
+	 */
+	 public static function getHelp(){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::getHelp();
+	 }
+
+	/**
+	 * Returns the processed help for the command replacing the %command.name% and
+	 * %command.full_name% patterns with the real values dynamically.
+	 *
+	 * @return string  The processed help for the command
+	 * @static 
+	 */
+	 public static function getProcessedHelp(){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::getProcessedHelp();
+	 }
+
+	/**
+	 * Sets the aliases for the command.
+	 *
+	 * @param array $aliases An array of aliases for the command
+	 * @return Command The current instance
+	 * @throws \InvalidArgumentException When an alias is invalid
+	 * @api 
+	 * @static 
+	 */
+	 public static function setAliases($aliases){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::setAliases($aliases);
+	 }
+
+	/**
+	 * Returns the aliases for the command.
+	 *
+	 * @return array An array of aliases for the command
+	 * @api 
+	 * @static 
+	 */
+	 public static function getAliases(){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::getAliases();
+	 }
+
+	/**
+	 * Returns the synopsis for the command.
+	 *
+	 * @return string The synopsis
+	 * @static 
+	 */
+	 public static function getSynopsis(){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::getSynopsis();
+	 }
+
+	/**
+	 * Gets a helper instance by name.
+	 *
+	 * @param string $name The helper name
+	 * @return mixed The helper value
+	 * @throws \InvalidArgumentException if the helper is not defined
+	 * @api 
+	 * @static 
+	 */
+	 public static function getHelper($name){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::getHelper($name);
+	 }
+
+	/**
+	 * Returns a text representation of the command.
+	 *
+	 * @return string A string representing the command
+	 * @deprecated Deprecated since version 2.3, to be removed in 3.0.
+	 * @static 
+	 */
+	 public static function asText(){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::asText();
+	 }
+
+	/**
+	 * Returns an XML representation of the command.
+	 *
+	 * @param Boolean $asDom Whether to return a DOM or an XML string
+	 * @return string|\DOMDocument An XML string representing the command
+	 * @deprecated Deprecated since version 2.3, to be removed in 3.0.
+	 * @static 
+	 */
+	 public static function asXml($asDom = false){
+		//Method inherited from Symfony\Component\Console\Command\Command
+		return Barryvdh\LaravelIdeHelper\GeneratorCommand::asXml($asDom);
+	 }
+
+}
+
 class Blade extends Illuminate\Support\Facades\Blade{
 	/**
 	 * Compile the view at the given path.
@@ -1521,6 +2114,26 @@ class Blade extends Illuminate\Support\Facades\Blade{
 	 */
 	 public static function setEscapedContentTags($openTag, $closeTag){
 		 Illuminate\View\Compilers\BladeCompiler::setEscapedContentTags($openTag, $closeTag);
+	 }
+
+	/**
+	 * Gets the content tags used for the compiler.
+	 *
+	 * @return string
+	 * @static 
+	 */
+	 public static function getContentTags(){
+		return Illuminate\View\Compilers\BladeCompiler::getContentTags();
+	 }
+
+	/**
+	 * Gets the escaped content tags used for the compiler.
+	 *
+	 * @return string
+	 * @static 
+	 */
+	 public static function getEscapedContentTags(){
+		return Illuminate\View\Compilers\BladeCompiler::getEscapedContentTags();
 	 }
 
 	/**
